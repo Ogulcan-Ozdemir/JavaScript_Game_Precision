@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PreciSion</title>
+
+    <link rel="import" href="https://www.polymer-project.org/0.5/components/paper-ripple/paper-ripple.html">
+    <link rel="import" href="http://www.polymer-project.org/components/core-icons/core-icons.html">
+    <link rel="import" href="http://www.polymer-project.org/components/font-roboto/roboto.html">
+    <script src="http://code.createjs.com/easeljs-0.7.0.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="game_css.css">
+
+    <script>
+
+        let stage, holder, heigthre1 = 0, heightre, count = 0, flag = 0, flag1 = 0, start, flag2 = 0, flag3 = 0;
+
+
+        function init() {
+            drawgame();
+        }
+
+        function drawgame() {
+            stage = new createjs.Stage("gameCanvas");
+
+            holder = stage.addChild(new createjs.Container());
+
+
+            for (let i = 0; i < 200; i++) {
+                const shape = new createjs.Shape();
+                count += 30;//40 easy 30 medium 20 hard
+                heightre = Math.random() * 190;
+
+                shape.graphics.beginFill("red").drawRect(i + count, 0, 10, heightre);
+                heigthre1 = stage.canvas.height - heightre;
+                heigthre1 -= 30;
+                shape.graphics.beginFill("yellow").drawRect(i + count, 200, 10, -heigthre1);
+
+                holder.addChild(shape);
+
+            }
+            start = new createjs.Shape();
+            start.graphics.beginFill("green").drawRect(0, 0, 10, 200);
+            start.alpha = 0.5;
+            stage.addChild(start);
+            stage.addChild(holder);
+            createjs.Ticker.on("tick", tick);
+
+            createjs.Ticker.setFPS(60);
+        }
+
+        function tick(event) {
+
+            const l = holder.getNumChildren();
+
+            for (let i = 0; i < l; i++) {
+                const child = holder.getChildAt(i);
+
+                child.alpha = 0.5;
+
+                const pt = child.globalToLocal(stage.mouseX, stage.mouseY);
+
+                if (stage.mouseInBounds && child.hitTest(pt.x, pt.y) && flag1 === 1 && flag === 1) {
+                    child.alpha = 1;
+                    $("body").css("background-color", "#b30000");
+                    setTimeout("location.reload()", 3000);
+                    flag3 = 1;
+
+                }
+                if (pt.x < 20 && pt.x > 0) {
+                    if (flag === 0 && flag1 === 1) {
+
+                        $("body").css("background-color", "#717b6b");
+                        flag = 1;
+
+
+                    }
+                }
+
+                if (!stage.mouseInBounds) {
+                    if (flag === 1 && flag2 === 0) {
+                        $("body").css("background-color", "#993300");
+                        setTimeout("location.reload()", 3000);
+                    }
+
+                }
+
+                if (pt.x > 990 && stage.mouseInBounds && flag3 === 0) {
+                    if (flag === 1) {
+                        $("body").css("background-color", "#009933");
+                        flag2 = 1;
+                    }
+
+                }
+
+
+            }
+            const la = start.globalToLocal(stage.mouseX, stage.mouseY);
+            if (start.hitTest(la.x, la.y)) {
+                start.alpha = 1;
+
+            }
+
+            stage.update(event);
+        }
+        $(document).ready(function () {
+            $("#gameCanvas").click(function () {
+
+            });
+
+
+            $("#start_btn").click(function () {
+                flag1 = 1;
+
+            });
+            $("#reload_btn").click(function () {
+                location.reload();
+
+            });
+
+            $("#head").animate({}, 2000).css("color", "#" + Math.random().toString(16).slice(2, 8));;
+            $("#hideCanvas").animate({
+                height: "toggle"
+            });
+
+        });
+
+
+    </script>
+</head>
+<body onload="init();">
+
+
+<center>
+    <div id="bot">
+
+        <h1 id="head">PreciSion</h1>
+
+        <p><b>You should reach the right end of box without touching columns if you touch one of them game
+            restart in 3 second<br></b></p>
+
+        <button id="start_btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Start
+        </button>
+        <button id="reload_btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+            Reload
+        </button>
+
+    </div>
+</center>
+<center>
+    <section>
+        <div class="buttons">
+            <form action="projecteasy.html">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                    easy
+                </button>
+            </form>
+        </div>
+        <div class="buttons">
+            <form>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                    medium
+                </button>
+            </form>
+        </div>
+        <div class="buttons">
+            <form action="projecthard.html">
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                    hard
+                </button>
+            </form>
+        </div>
+    </section>
+</center>
+
+
+<canvas id="gameCanvas" width="1000px" height="200px">Test</canvas>
+<canvas id="hideCanvas" width="1000px" height="200px">Test</canvas>
+
+
+</body>
+</html>

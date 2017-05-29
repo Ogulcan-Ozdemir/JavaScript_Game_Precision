@@ -1,0 +1,50 @@
+
+#gameCanvas {
+
+    padding: 0;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: blue;
+}
+
+#hideCanvas {
+    padding: 0;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: blue;
+}
+
+#bot {
+
+    width: 50%;
+    margin: 100px auto 0;
+
+}
+
+.buttons {
+
+    padding: 30px 25px;
+    float: left;
+
+}
+
+section {
+    width: 20%;
+    margin: 0 auto;
+
+}
+
+body {
+    background-color: #009933;
+
+}
