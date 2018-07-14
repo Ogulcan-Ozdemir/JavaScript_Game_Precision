@@ -96,6 +96,7 @@ var isGameStarted = isPlayerEnteredGameArea = isPlayerReachedEnd = isPlayerHitBl
            stage.update();
            drawgame();
            $("body").css("background-color", "#009933");
+                     
         }
 
         var difficulty = {

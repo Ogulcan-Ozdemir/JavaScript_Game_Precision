@@ -1,19 +1,17 @@
 var express = require('express'),
     http = require('http'),
     path = require('path'),
-    fs = require('fs');
-    routes = require('./public/routes')
+    routes = require('./public/routes');
+
+    
+var bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
+    logger = require('morgan'),
+    errorHandler = require('errorhandler');
+
 var app = express();
 
 
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var logger = require('morgan');
-var errorHandler = require('errorhandler');
-var multipart = require('connect-multiparty')
-
-
-// all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/public/views');
 app.set('view engine', 'ejs');
@@ -27,7 +25,7 @@ app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/style', express.static(path.join(__dirname, '/views/style')));
 
-// development only
+
 if ('development' == app.get('env')) {
     app.use(errorHandler());
 }
