@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PreciSion</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://code.createjs.com/easeljs-0.8.2.min.js"></script>
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
+    <script src="./scripts/game.js" ></script>
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.indigo-pink.min.css">
+    <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/2.6.0.2/lib/paper-ripple/paper-ripple.html">
+    <link rel="import" href="https://cdn.rawgit.com/download/polymer-cdn/2.6.0.2/lib/font-roboto/roboto.html">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./style/game.css">
+
+</head>
+
+<body onload="drawgame();">
+
+
+    <center>
+        <div id="bot">
+
+            <h1 id="head">PreciSion</h1>
+
+            <p>
+                <b>You should reach the right end of box without touching columns if you touch one of them game restart in 3
+                    second
+                    <br>
+                </b>
+            </p>
+
+            <button id="start_btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                Start
+            </button>
+            <button id="reload_btn" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                Reload
+            </button>
+
+        </div>
+    </center>
+    <center>
+        <section>
+            <div class="buttons">
+
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect diffBtn">
+                    easy
+                </button>
+
+            </div>
+            <div class="buttons">
+
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect diffBtn">
+                    medium
+                </button>
+
+            </div>
+            <div class="buttons">
+
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect diffBtn">
+                    hard
+                </button>
+
+            </div>
+        </section>
+    </center>
+
+
+    <canvas id="gameCanvas" width="1000px" height="200px">Test</canvas>
+    <canvas id="hideCanvas" width="1000px" height="200px">Test</canvas>
+
+
+</body>
+
+</html>
